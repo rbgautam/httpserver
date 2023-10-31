@@ -15,8 +15,18 @@ const server = http.createServer((req,res)=>{
     res.writeHead(200,{
         'content-type':'application/JSON',
         'X-Powered-By':'node.js'
+    });
+    let body =[];
+    req
+    .on('data',chunk=>{
+        body.push(chunk);
     })
-    
+    .on('end',()=>{
+        body =Buffer.concat(body).toString();
+        console.log(body);
+    })
+
+
     res.end(
         JSON.stringify({
         success:true,
