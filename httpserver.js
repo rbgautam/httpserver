@@ -40,6 +40,19 @@ const server = http.createServer((req,res)=>{
             response.data = jsObjData;
 
         } 
+        else if(method === 'DELETE'){
+            
+            status =201;
+            var {id,text} = JSON.parse(body);
+            // console.log(jsObjData);
+            jsObjData.forEach(element => {
+                if(element.id === id)
+                jsObjData.pop(element);
+            });
+           
+            response.data = jsObjData;
+
+        } 
 
         res.writeHead(status,{
             'content-type':'application/JSON',
