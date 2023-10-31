@@ -1,0 +1,29 @@
+{
+  "name": "httpserver",
+  "version": "1.0.0",
+  "description": "Simple Httpserver",
+  "main": "httpserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon httpserver.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rbgautam/httpserver.git"
+  },
+  "keywords": [
+    "http",
+    "get",
+    "node.js",
+    "nodemon"
+  ],
+  "author": "Rahul B. Gautam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rbgautam/httpserver/issues"
+  },
+  "homepage": "https://github.com/rbgautam/httpserver#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
