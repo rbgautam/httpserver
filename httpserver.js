@@ -1,13 +1,24 @@
 const http = require('http');
+const jsObjData =[
+    {id:1,text:'Todo One'},
+    {id:2,text:'Todo Two'},
+    {id:3,text:'Todo Three'},
+    {id:4,text:'Todo Four'}
+]
+    
 
 const server = http.createServer((req,res)=>{
     const{headers,url,method} =req;
     console.log(headers,url,method);
-    res.setHeader('content-type','text/HTML');
+    res.setHeader('content-type','application/JSON');
     res.setHeader('X-Powered-By','node.js')
-    res.write('<h1>Hello world from Node.js</h1>');
-    res.write('<h2>Node.js Http Demo</h2>');
-    res.end();
+    
+    res.end(
+        JSON.stringify({
+        success:true,
+        data:jsObjData
+    })
+    );
 
 });
 
