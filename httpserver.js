@@ -10,8 +10,12 @@ const jsObjData =[
 const server = http.createServer((req,res)=>{
     const{headers,url,method} =req;
     console.log(headers,url,method);
-    res.setHeader('content-type','application/JSON');
-    res.setHeader('X-Powered-By','node.js')
+   
+
+    res.writeHead(200,{
+        'content-type':'application/JSON',
+        'X-Powered-By':'node.js'
+    })
     
     res.end(
         JSON.stringify({
