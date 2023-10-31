@@ -12,10 +12,7 @@ const server = http.createServer((req,res)=>{
     console.log(headers,url,method);
    
 
-    res.writeHead(200,{
-        'content-type':'application/JSON',
-        'X-Powered-By':'node.js'
-    });
+    
     let body =[];
     req
     .on('data',chunk=>{
@@ -24,15 +21,39 @@ const server = http.createServer((req,res)=>{
     .on('end',()=>{
         body =Buffer.concat(body).toString();
         console.log(body);
+        let status =404;
+        const response ={
+            success:false,
+            data:null
+        };
+
+        if(method === 'GET' && url === '/todos'){
+            status =200;
+            response.data= jsObjData;
+            response.success = true;
+        }
+        else if(method === 'POST' && url === '/todos'){
+
+            status =201;
+            var bodydata = JSON.parse(body);
+            jsObjData.push(bodydata);
+            response.data = jsObjData;
+
+        } 
+
+        res.writeHead(status,{
+            'content-type':'application/JSON',
+            'X-Powered-By':'node.js'
+        });
+
+        
+        res.end(
+            JSON.stringify(response)
+        );
     })
 
 
-    res.end(
-        JSON.stringify({
-        success:true,
-        data:jsObjData
-    })
-    );
+    
 
 });
 
